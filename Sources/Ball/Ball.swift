@@ -1,7 +1,5 @@
 @_exported public import Magnitude
 
-/// A center and finite nonnegative radius, interpreted using an explicit metric.
-/// Equality compares the representation. Zero radius is permitted.
 public struct Ball<Point, Radius: Magnitude::Scalar> {
     public var center: Point
     public var radius: Magnitude<Radius>
@@ -11,8 +9,6 @@ public struct Ball<Point, Radius: Magnitude::Scalar> {
         self.radius = radius
     }
 
-    /// Closed-ball membership, including points on the boundary.
-    /// The caller supplies a metric whose distances use the radius's units.
     public func contains<Failure: Swift.Error>(
         _ point: Point,
         using distance: (Point, Point) throws(Failure) -> Magnitude<Radius>
@@ -20,7 +16,6 @@ public struct Ball<Point, Radius: Magnitude::Scalar> {
         try distance(center, point).value <= radius.value
     }
 
-    /// Strict interior membership; a zero-radius ball has no strict interior.
     public func containsInterior<Failure: Swift.Error>(
         _ point: Point,
         using distance: (Point, Point) throws(Failure) -> Magnitude<Radius>
@@ -28,7 +23,6 @@ public struct Ball<Point, Radius: Magnitude::Scalar> {
         try distance(center, point).value < radius.value
     }
 
-    /// Exact metric boundary membership. No floating-point tolerance is implied.
     public func containsOnBoundary<Failure: Swift.Error>(
         _ point: Point,
         using distance: (Point, Point) throws(Failure) -> Magnitude<Radius>
