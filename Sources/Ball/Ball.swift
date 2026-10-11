@@ -8,22 +8,24 @@ public struct Ball<Point, Radius: Magnitude::Scalar> {
         self.center = center
         self.radius = radius
     }
+}
 
-    public func contains<Failure: Swift.Error>(
+extension Ball {
+    public func contains<Failure: Swift::Error>(
         _ point: Point,
         using distance: (Point, Point) throws(Failure) -> Magnitude<Radius>
     ) throws(Failure) -> Bool {
         try distance(center, point).value <= radius.value
     }
 
-    public func containsInterior<Failure: Swift.Error>(
+    public func containsInterior<Failure: Swift::Error>(
         _ point: Point,
         using distance: (Point, Point) throws(Failure) -> Magnitude<Radius>
     ) throws(Failure) -> Bool {
         try distance(center, point).value < radius.value
     }
 
-    public func containsOnBoundary<Failure: Swift.Error>(
+    public func containsOnBoundary<Failure: Swift::Error>(
         _ point: Point,
         using distance: (Point, Point) throws(Failure) -> Magnitude<Radius>
     ) throws(Failure) -> Bool {
