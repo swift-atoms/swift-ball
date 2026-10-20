@@ -38,6 +38,6 @@ extension Ball: Hashable where Point: Hashable, Radius: Hashable {}
 extension Ball: Sendable where Point: Sendable, Radius: Sendable {}
 
 #if !hasFeature(Embedded)
-extension Ball: Encodable where Point: Encodable, Radius: Encodable {}
-extension Ball: Decodable where Point: Decodable, Radius: Decodable {}
+    extension Ball: Encodable where Point: Encodable, Radius: Encodable {}
+    extension Ball: Decodable where Point: Decodable, Radius: Decodable {}
 #endif

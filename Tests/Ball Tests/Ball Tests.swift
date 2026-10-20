@@ -1,8 +1,8 @@
 import Ball
-import Testing
 import Foundation
 import Point
 import Tagged
+import Testing
 
 @Suite struct `Ball metric contracts` {
     private func distance(_ a: Int, _ b: Int) throws -> Magnitude<Int> {
@@ -65,7 +65,9 @@ import Tagged
             }
         }
         let ball = Ball(center: 2, radius: try Magnitude(validating: 3))
-        #expect(try JSONDecoder().decode(Ball<Int, Int>.self, from: JSONEncoder().encode(ball)) == ball)
+        #expect(
+            try JSONDecoder().decode(Ball<Int, Int>.self, from: JSONEncoder().encode(ball)) == ball
+        )
         #expect(Set([ball, ball]).count == 1)
     }
 
