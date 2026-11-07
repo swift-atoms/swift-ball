@@ -38,7 +38,7 @@ import Testing
     }
 
     @Test func `Metric failures retain their error type`() throws {
-        enum Failure: Error { case unavailable }
+        enum Failure: Swift.Error { case unavailable }
         let ball = Ball(center: 0, radius: Magnitude<Int>.zero)
         func metric(_ a: Int, _ b: Int) throws(Failure) -> Magnitude<Int> {
             throw .unavailable
