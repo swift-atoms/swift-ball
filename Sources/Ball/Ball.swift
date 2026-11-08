@@ -1,4 +1,4 @@
-@_exported public import Magnitude
+public import Magnitude
 
 public struct Ball<Point, Radius: Magnitude::Scalar> {
     public var center: Point
